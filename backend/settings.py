@@ -56,7 +56,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'https://consultotia-frontend.vercel.app',
+    'https://corvelsconsultotia.vercel.app',
 ]
 CORS_ALLOW_CREDENTIALS = True
 
