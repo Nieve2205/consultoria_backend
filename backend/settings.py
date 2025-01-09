@@ -55,7 +55,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True  # Para desarrollo
+CORS_ALLOWED_ORIGINS = [
+    'https://consultotia-frontend.vercel.app',
+]
 CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'backend.urls'
