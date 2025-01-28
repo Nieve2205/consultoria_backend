@@ -8,7 +8,8 @@ from consultoria.views import (
     BrochureViewSet,  # Nuevo
     NewsViewSet,      # Nuevo
     AdminCheckView,
-    RegisterAdminView
+    RegisterAdminView,
+    OfferViewSet,
 )
 from django.conf import settings
 from django.conf.urls.static import static
@@ -20,6 +21,7 @@ router.register(r'service-subcategories', ServiceSubcategoryViewSet, basename='s
 router.register(r'services', ServiceViewSet, basename='service')
 router.register(r'brochures', BrochureViewSet, basename='brochure')  # Nuevo
 router.register(r'news', NewsViewSet, basename='news')  # Nuevo
+router.register(r'offers', OfferViewSet, basename='offer')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
