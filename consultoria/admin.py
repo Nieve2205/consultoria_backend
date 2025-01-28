@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 from .models import ServiceCategory, ServiceSubcategory, Service
-from .models import Brochure, News
+from .models import Brochure, News, Offer
 
 @admin.register(Brochure)
 class BrochureAdmin(admin.ModelAdmin):
@@ -77,3 +77,9 @@ class ServiceAdmin(admin.ModelAdmin):
     search_fields = ('title', 'description')
     list_filter = ('subcategory__category', 'subcategory', 'is_active')
     list_editable = ('is_active', 'order')
+
+@admin.register(Offer)
+class OfferAdmin(admin.ModelAdmin):
+    list_display = ('title', 'price', 'is_active')
+    search_fields = ('title',)
+    list_filter = ('is_active',)

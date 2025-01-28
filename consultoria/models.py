@@ -3,9 +3,6 @@ from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 
 class Brochure(models.Model):
-    """
-    Modelo para gestionar brochures/catálogos de servicios en PDF
-    """
     title = models.CharField(
         max_length=255,
         verbose_name=_('Título del Brochure')
@@ -19,16 +16,24 @@ class Brochure(models.Model):
     class Meta:
         verbose_name = _('Brochure')
         verbose_name_plural = _('Brochures')
-        ordering = ['title']  # Cambiamos el ordenamiento por el título en lugar de created_at
-
+        ordering = ['title'] 
     def __str__(self):
         return self.title
 
 class News(models.Model):
-    title = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=255, unique=True)
+    title = models.CharField(
+        max_length=255
+    )
+    slug = models.SlugField(
+        max_length=255, 
+        unique=True
+    )
     description = models.TextField()
-    image = models.ImageField(upload_to='news/', null=True, blank=True)
+    image = models.ImageField(
+        upload_to='news/', 
+        null=True, 
+        blank=True
+    )
     publication_date = models.DateTimeField()
 
     class Meta:
@@ -39,9 +44,7 @@ class News(models.Model):
     def __str__(self):
         return self.title
 class ServiceCategory(models.Model):
-    """
-    Categoría principal de servicios (6 servicios principales)
-    """
+   
     name = models.CharField(
         max_length=255, 
         verbose_name=_('Nombre de Categoría')
@@ -72,9 +75,7 @@ class ServiceCategory(models.Model):
         return self.name
 
 class ServiceSubcategory(models.Model):
-    """
-    Subcategorías dentro de cada servicio principal 
-    """
+  
     category = models.ForeignKey(
         ServiceCategory, 
         on_delete=models.CASCADE, 
@@ -105,17 +106,13 @@ class ServiceSubcategory(models.Model):
         return f"{self.category.name} - {self.name}"
 
 class Service(models.Model):
-    """
-    Servicios específicos dentro de cada subcategoría
-    """
-    # Hacemos el campo nullable y con un related_name para facilitar las consultas
     subcategory = models.ForeignKey(
         ServiceSubcategory, 
-        on_delete=models.SET_NULL,  # Cambiamos a SET_NULL
+        on_delete=models.SET_NULL,  
         related_name='services',
         verbose_name=_('Subcategoría'),
-        null=True,  # Permitimos valores nulos
-        blank=True  # Permitimos dejar en blanco en formularios
+        null=True,  
+        blank=True  
     )
     title = models.CharField(
         max_length=255, 
@@ -150,6 +147,43 @@ class Service(models.Model):
         verbose_name = _('Servicio')
         verbose_name_plural = _('Servicios')
         ordering = ['order', 'title']
+
+    def __str__(self):
+        return self.title
+    
+class Offer(models.Model):
+    title = models.CharField(
+        max_length=255,
+        verbose_name=_('Título de la Oferta')
+    )
+    description = models.TextField(
+        verbose_name=_('Descripción de la Oferta')
+    )
+    services = models.ManyToManyField(
+        'Service',
+        verbose_name=_('Servicios Incluidos'),
+        related_name='offers'
+    )
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name=_('Precio de la Oferta')
+    )
+    image = models.ImageField(
+        upload_to='offers/',
+        blank=True,
+        null=True,
+        verbose_name=_('Imagen de la Oferta')
+    )
+    is_active = models.BooleanField(
+        default=True,
+        verbose_name=_('Oferta Activa')
+    )
+
+    class Meta:
+        verbose_name = _('Oferta')
+        verbose_name_plural = _('Ofertas')
+        ordering = ['title']
 
     def __str__(self):
         return self.title

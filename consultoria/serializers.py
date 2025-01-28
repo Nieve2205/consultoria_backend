@@ -2,6 +2,7 @@
 from rest_framework import serializers
 from .models import ServiceCategory, ServiceSubcategory, Service
 from .models import Brochure, News
+from .models import Offer
 
 
 class BrochureSerializer(serializers.ModelSerializer):
@@ -44,3 +45,10 @@ class ServiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Service
         fields = ['id', 'subcategory', 'title', 'description', 'image_1', 'image_2', 'order', 'is_active']
+
+class OfferSerializer(serializers.ModelSerializer):
+    services = serializers.PrimaryKeyRelatedField(many=True, queryset=Service.objects.all())
+
+    class Meta:
+        model = Offer
+        fields = ('id', 'title', 'description', 'services', 'price', 'image', 'is_active')
