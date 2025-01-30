@@ -65,7 +65,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    'https://corvelsconsultotia.vercel.app',
+    'https://corvelsconsultoria.vercel.app',
 ]
 CORS_ALLOW_CREDENTIALS = True
 
