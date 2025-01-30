@@ -14,6 +14,12 @@ from .serializers import ServiceCategorySerializer, ServiceSubcategorySerializer
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from .models import Brochure, News
 from .serializers import BrochureSerializer, NewsSerializer
+from .models import Offer
+from .serializers import OfferSerializer
+
+class OfferViewSet(viewsets.ModelViewSet):
+    queryset = Offer.objects.all()
+    serializer_class = OfferSerializer
 
 class BrochureViewSet(viewsets.ModelViewSet):
     queryset = Brochure.objects.all()
