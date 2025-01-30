@@ -159,14 +159,6 @@ class Offer(models.Model):
     description = models.TextField(
         verbose_name=_('Descripción de la Oferta')
     )
-    services = models.ManyToManyField(
-        Service,
-        on_delete=models.SET_NULL,  
-        verbose_name=_('Servicios Incluidos'),
-        related_name='offers',
-        null=True,  
-        blank=True
-    )
     price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
