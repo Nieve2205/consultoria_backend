@@ -160,9 +160,12 @@ class Offer(models.Model):
         verbose_name=_('Descripción de la Oferta')
     )
     services = models.ManyToManyField(
-        'Service',
+        Service,
+        on_delete=models.SET_NULL,  
         verbose_name=_('Servicios Incluidos'),
-        related_name='offers'
+        related_name='offers',
+        null=True,  
+        blank=True
     )
     price = models.DecimalField(
         max_digits=10,
