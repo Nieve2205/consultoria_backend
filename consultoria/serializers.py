@@ -49,4 +49,4 @@ class ServiceSerializer(serializers.ModelSerializer):
 class OfferSerializer(serializers.ModelSerializer):
     class Meta:
         model = Offer
-        fields = ('id', 'title', 'description', 'services', 'price', 'image', 'is_active')
+        fields = ('id', 'title', 'description', 'price', 'image', 'is_active')
