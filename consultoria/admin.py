@@ -38,8 +38,8 @@ class ServiceCategoryAdmin(admin.ModelAdmin):
     """
     Configuración del admin para las categorías de servicios
     """
-    list_display = ('name', 'description','order')
-    search_fields = ('name', 'description')
+    list_display = ('name','order')
+    search_fields = ['name']
     list_editable = ('order',)
     
     # Mostrar subcategorías inline

@@ -43,16 +43,12 @@ class News(models.Model):
 
     def __str__(self):
         return self.title
+    
 class ServiceCategory(models.Model):
    
     name = models.CharField(
         max_length=255, 
         verbose_name=_('Nombre de Categoría')
-    )
-    description = models.TextField(
-        blank=True, 
-        null=True, 
-        verbose_name=_('Descripción')
     )
     image = models.ImageField(
         upload_to='service_categories/', 

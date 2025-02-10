@@ -34,7 +34,7 @@ class ServiceCategorySerializer(serializers.ModelSerializer):
     
     class Meta:
         model = ServiceCategory
-        fields = ['id', 'name', 'description', 'image', 'order']
+        fields = ['id', 'name', 'image', 'order']
 
 class ServiceSubcategorySerializer(serializers.ModelSerializer):
     class Meta:
